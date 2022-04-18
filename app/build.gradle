@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.manimal.marvelcharacters"
+        minSdk 25
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    viewBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //region Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+    //endregion
+
+    //region Koin
+    implementation "org.koin:koin-androidx-scope:2.2.1"
+    implementation "org.koin:koin-androidx-viewmodel:2.2.1"
+    //endregion
+
+    //region Network
+    implementation "com.google.code.gson:gson:2.8.6"
+    //endregion
+
+    //region Glide
+    implementation "com.caverock:androidsvg-aar:1.4"
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+    implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
+    //endregion
+}
