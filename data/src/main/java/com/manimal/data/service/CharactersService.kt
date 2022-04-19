@@ -5,5 +5,5 @@ import com.manimal.data.response.ServiceResult
 
 interface CharactersService {
 
-    suspend fun getCharactersList(): ServiceResult<CharactersListResponseModel>
+    suspend fun getCharactersList(timeStamp: String, publicKey: String, hash: String): ServiceResult<CharactersListResponseModel>
 }

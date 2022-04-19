@@ -5,5 +5,5 @@ import com.manimal.domain.response.UseCaseResult
 
 interface CharactersRemoteDataSource {
 
-    suspend fun getCharactersList(): UseCaseResult<CharactersListData>
+    suspend fun getCharactersList(timeStamp: String, publicKey: String, hash: String): UseCaseResult<CharactersListData>
 }

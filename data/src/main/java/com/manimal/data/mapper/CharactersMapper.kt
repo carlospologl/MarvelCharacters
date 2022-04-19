@@ -15,7 +15,7 @@ fun CharactersListResponseModel.mapToCharactersListData(): CharactersListData {
 
 private fun getCharactersList(results: List<CharactersListResultsModel>?): List<CharacterData> {
     results?.let {
-        var list: MutableList<CharacterData> = mutableListOf()
+        val list: MutableList<CharacterData> = mutableListOf()
         it.forEach { item ->
             list.add(
                 CharacterData(
@@ -27,6 +27,7 @@ private fun getCharactersList(results: List<CharactersListResultsModel>?): List<
                 )
             )
         }
+        return list
     }
 
     return mutableListOf()

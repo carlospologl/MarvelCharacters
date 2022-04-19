@@ -11,8 +11,8 @@ class CharactersRemoteDataSourceImpl(
     private val charactersService: CharactersService
 ) : CharactersRemoteDataSource {
 
-    override suspend fun getCharactersList(): UseCaseResult<CharactersListData> {
-        return when (val charactersResponse = charactersService.getCharactersList()) {
+    override suspend fun getCharactersList(timeStamp: String, publicKey: String, hash: String): UseCaseResult<CharactersListData> {
+        return when (val charactersResponse = charactersService.getCharactersList(timeStamp, publicKey, hash)) {
             is ServiceResult.Success<*> -> {
                 UseCaseResult.Success(
                     (charactersResponse.data as CharactersListResponseModel).mapToCharactersListData()
