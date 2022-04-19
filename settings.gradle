@@ -10,3 +10,4 @@ rootProject.name = "MarvelCharacters"
 include ':app'
 include ':domain'
 include ':data'
+include ':di'
