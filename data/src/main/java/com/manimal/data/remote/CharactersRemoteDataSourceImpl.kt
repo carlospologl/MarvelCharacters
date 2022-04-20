@@ -5,6 +5,7 @@ import com.manimal.data.model.response.CharactersListResponseModel
 import com.manimal.data.response.ServiceResult
 import com.manimal.data.service.CharactersService
 import com.manimal.domain.model.CharactersListData
+import com.manimal.domain.model.ErrorModel
 import com.manimal.domain.response.UseCaseResult
 
 class CharactersRemoteDataSourceImpl(
@@ -19,7 +20,13 @@ class CharactersRemoteDataSourceImpl(
                 )
             }
             is ServiceResult.BackendError -> {
-                UseCaseResult.Failure()
+                UseCaseResult.Failure(
+                    ErrorModel(
+                        httpCode = charactersResponse.error.httpCode,
+                        code = charactersResponse.error.code,
+                        message = charactersResponse.error.message
+                    )
+                )
             }
         }
     }
@@ -37,7 +44,13 @@ class CharactersRemoteDataSourceImpl(
                 )
             }
             is ServiceResult.BackendError -> {
-                UseCaseResult.Failure()
+                UseCaseResult.Failure(
+                    ErrorModel(
+                        httpCode = charactersResponse.error.httpCode,
+                        code = charactersResponse.error.code,
+                        message = charactersResponse.error.message
+                    )
+                )
             }
         }
     }

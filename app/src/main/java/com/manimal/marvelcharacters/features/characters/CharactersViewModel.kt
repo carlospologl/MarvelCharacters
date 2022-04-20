@@ -27,7 +27,7 @@ class CharactersViewModel(
         viewModelScope.launch {
             when (val response = charactersUseCase.getCharactersList()) {
                 is UseCaseResult.Success -> charactersListLiveData.value = CharactersListDataContainer(BaseStatus.SUCCESS, response.data)
-                is UseCaseResult.Failure -> charactersListLiveData.value = CharactersListDataContainer(BaseStatus.FAILED)
+                is UseCaseResult.Failure -> charactersListLiveData.value = CharactersListDataContainer(BaseStatus.FAILED, response.errorModel)
             }
         }
     }
@@ -43,7 +43,7 @@ class CharactersViewModel(
         viewModelScope.launch {
             when (val response = charactersUseCase.getCharacterDetail(characterId)) {
                 is UseCaseResult.Success -> characterDetailLiveData.value = CharactersListDataContainer(BaseStatus.SUCCESS, response.data)
-                is UseCaseResult.Failure -> characterDetailLiveData.value = CharactersListDataContainer(BaseStatus.FAILED)
+                is UseCaseResult.Failure -> characterDetailLiveData.value = CharactersListDataContainer(BaseStatus.FAILED, response.errorModel)
             }
         }
     }

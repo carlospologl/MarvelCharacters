@@ -1,10 +1,10 @@
 package com.manimal.data.service
 
 import com.manimal.data.api.CharactersApi
+import com.manimal.data.api.ErrorHandle.getApiError
 import com.manimal.data.api.NetworkModule
 import com.manimal.data.model.response.CharactersListResponseModel
 import com.manimal.data.response.ServiceResult
-import retrofit2.http.Path
 import java.lang.Exception
 
 class CharactersServiceImpl : CharactersService {
@@ -14,7 +14,7 @@ class CharactersServiceImpl : CharactersService {
         return try {
             ServiceResult.Success(serviceApi.getCharactersList(timeStamp, publicKey, hash))
         } catch (e: Exception) {
-            ServiceResult.BackendError()
+            ServiceResult.BackendError(getApiError(e))
         }
     }
 
@@ -28,7 +28,7 @@ class CharactersServiceImpl : CharactersService {
         return try {
             ServiceResult.Success(serviceApi.getCharacterDetail(characterId, timeStamp, publicKey, hash))
         } catch (e: Exception) {
-            ServiceResult.BackendError()
+            ServiceResult.BackendError(getApiError(e))
         }
     }
 }

@@ -84,8 +84,9 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
                 DialogUtils.createDialog(
                     requireActivity(),
                     DialogWrapper(
-                        title = R.string.generic_error_internet_title,
-                        message = R.string.generic_error_internet_message,
+                        title = R.string.generic_error_unknown_title,
+                        message = R.string.generic_error_unknown_message,
+                        stringMessage = it.error?.message,
                         positiveMessage = R.string.generic_error_button_ok,
                         positiveAction = {
                             requireActivity().finish()

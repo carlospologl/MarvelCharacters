@@ -9,7 +9,12 @@ object DialogUtils {
         val builder = AlertDialog.Builder(activity)
 
         builder.apply {
-            setMessage(wrapper.message)
+            if (wrapper.stringMessage == null) {
+                setMessage(wrapper.message)
+            } else {
+                setMessage(wrapper.stringMessage)
+            }
+
             setTitle(wrapper.title)
             wrapper.positiveMessage?.let { okMessage ->
                 setPositiveButton(okMessage) { _, _ ->
