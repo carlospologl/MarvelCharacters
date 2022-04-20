@@ -74,4 +74,8 @@ dependencies {
     //region Glide
     implementation "com.github.bumptech.glide:glide:4.13.0"
     //endregion
+
+    //region Skeleton
+    implementation "com.ericktijerou.koleton:koleton:1.0.0-beta01"
+    //endregion
 }

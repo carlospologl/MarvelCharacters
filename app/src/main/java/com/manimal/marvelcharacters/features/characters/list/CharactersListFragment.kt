@@ -13,8 +13,8 @@ import com.manimal.marvelcharacters.features.characters.CharactersActivity
 import com.manimal.marvelcharacters.features.characters.CharactersViewModel
 import com.manimal.marvelcharacters.utils.DialogUtils
 import com.manimal.marvelcharacters.utils.DialogWrapper
-import com.manimal.marvelcharacters.utils.setGone
-import com.manimal.marvelcharacters.utils.setVisible
+import koleton.api.hideSkeleton
+import koleton.api.loadSkeleton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, CharactersActivity>() {
@@ -24,6 +24,7 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.rvCharactersListList.layoutManager = LinearLayoutManager(requireContext())
         initObservers()
     }
 
@@ -37,10 +38,14 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
 
     private val charactersListObserver = Observer<CharactersListDataContainer> {
         when (it.status) {
-            BaseStatus.LOADING -> { binding.pbCharactersListLoading.setVisible() }
+            BaseStatus.LOADING -> {
+                binding.rvCharactersListList.loadSkeleton(R.layout.item_characters_list) {
+                    itemCount(8)
+                }
+            }
             BaseStatus.SUCCESS -> {
                 val results = it.data?.results
-                binding.pbCharactersListLoading.setGone()
+                binding.rvCharactersListList.hideSkeleton()
                 if (results?.isNotEmpty() == true) {
                     val charactersListAdapter = CharactersListAdapter(
                         charactersList = results,
@@ -53,14 +58,11 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
                         }
                     )
 
-                    binding.rvCharactersListList.apply {
-                        layoutManager = LinearLayoutManager(requireContext())
-                        adapter = charactersListAdapter
-                    }
+                    binding.rvCharactersListList.adapter = charactersListAdapter
                 }
             }
             BaseStatus.ERROR_CONNECTION -> {
-                binding.pbCharactersListLoading.setGone()
+                binding.rvCharactersListList.hideSkeleton()
                 DialogUtils.createDialog(
                     requireActivity(),
                     DialogWrapper(
@@ -78,7 +80,7 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
                 )
             }
             BaseStatus.FAILED -> {
-                binding.pbCharactersListLoading.setGone()
+                binding.rvCharactersListList.hideSkeleton()
                 DialogUtils.createDialog(
                     requireActivity(),
                     DialogWrapper(

@@ -15,10 +15,9 @@ import com.manimal.marvelcharacters.features.characters.list.CharactersListDataC
 import com.manimal.marvelcharacters.utils.DateUtils
 import com.manimal.marvelcharacters.utils.DialogUtils
 import com.manimal.marvelcharacters.utils.DialogWrapper
-import com.manimal.marvelcharacters.utils.setGone
-import com.manimal.marvelcharacters.utils.setVisible
+import koleton.api.hideSkeleton
+import koleton.api.loadSkeleton
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Calendar
 
 class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, CharactersActivity>() {
 
@@ -39,10 +38,12 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
 
     private val characterDetailObserver = Observer<CharactersListDataContainer> {
         when (it.status) {
-            BaseStatus.LOADING -> { binding.pbCharacterDetailLoading.setVisible() }
+            BaseStatus.LOADING -> {
+                showSkeleton()
+            }
             BaseStatus.SUCCESS -> {
                 val results = it.data?.results
-                binding.pbCharacterDetailLoading.setGone()
+                hideSkeleton()
                 if (results?.isNotEmpty() == true) {
                     val characterData = results[0]
                     binding.tvCharacterDetailName.text = characterData.name
@@ -62,7 +63,7 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
                 }
             }
             BaseStatus.ERROR_CONNECTION -> {
-                binding.pbCharacterDetailLoading.setGone()
+                hideSkeleton()
                 DialogUtils.createDialog(
                     requireActivity(),
                     DialogWrapper(
@@ -80,7 +81,7 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
                 )
             }
             BaseStatus.FAILED -> {
-                binding.pbCharacterDetailLoading.setGone()
+                hideSkeleton()
                 DialogUtils.createDialog(
                     requireActivity(),
                     DialogWrapper(
@@ -93,6 +94,26 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
                     )
                 )
             }
+        }
+    }
+    //endregion
+
+    //region skeleton
+    private fun showSkeleton() {
+        binding.apply {
+            ivCharacterDetailImage.loadSkeleton()
+            tvCharacterDetailName.loadSkeleton(length = 16)
+            tvCharacterDetailDescription.loadSkeleton(length = 200)
+            tvCharacterDetailLastModifiedValue.loadSkeleton(length = 12)
+        }
+    }
+
+    private fun hideSkeleton() {
+        binding.apply {
+            ivCharacterDetailImage.hideSkeleton()
+            tvCharacterDetailName.hideSkeleton()
+            tvCharacterDetailDescription.hideSkeleton()
+            tvCharacterDetailLastModifiedValue.hideSkeleton()
         }
     }
     //endregion
