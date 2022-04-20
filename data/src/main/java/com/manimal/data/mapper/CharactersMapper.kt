@@ -4,6 +4,9 @@ import com.manimal.data.model.response.CharactersListResponseModel
 import com.manimal.data.model.response.CharactersListResultsModel
 import com.manimal.domain.model.CharacterData
 import com.manimal.domain.model.CharactersListData
+import com.manimal.domain.utils.Constants.DOT
+import com.manimal.domain.utils.Constants.IMAGE_VARIANT_PORTRAIT_MEDIUM
+import com.manimal.domain.utils.Constants.SLASH
 
 fun CharactersListResponseModel.mapToCharactersListData(): CharactersListData {
     return CharactersListData(
@@ -23,7 +26,13 @@ private fun getCharactersList(results: List<CharactersListResultsModel>?): List<
                     name = item.name,
                     description = item.description,
                     modified = item.modified,
-                    resourceURI = item.resourceURI
+                    resourceURI = item.resourceURI,
+                    thumbnail =
+                        item.thumbnail?.path +
+                        SLASH +
+                        IMAGE_VARIANT_PORTRAIT_MEDIUM +
+                        DOT +
+                        item.thumbnail?.extension
                 )
             )
         }

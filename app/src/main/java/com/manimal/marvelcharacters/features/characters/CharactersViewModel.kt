@@ -1,6 +1,5 @@
 package com.manimal.marvelcharacters.features.characters
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +15,14 @@ class CharactersViewModel(
 
     val charactersListLiveData: MutableLiveData<CharactersListDataContainer> = MutableLiveData()
 
-    fun getCharactersList() {
+    fun getCharactersList(networkNotConnected: Boolean) {
+        charactersListLiveData.value = CharactersListDataContainer(BaseStatus.LOADING)
+
+        if (networkNotConnected) {
+            charactersListLiveData.value = CharactersListDataContainer(BaseStatus.ERROR_CONNECTION)
+            return
+        }
+
         viewModelScope.launch {
             when (val response = charactersUseCase.getCharactersList()) {
                 is UseCaseResult.Success -> charactersListLiveData.value = CharactersListDataContainer(BaseStatus.SUCCESS, response.data)

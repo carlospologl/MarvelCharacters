@@ -24,7 +24,7 @@ class CharactersDetailFragment : BaseFragment<FragmentCharactersDetailBinding, C
     //region Observers
     private fun initObservers() {
         viewModel.charactersListLiveData.observe(viewLifecycleOwner, charactersListObserver)
-        viewModel.getCharactersList()
+        viewModel.getCharactersList(isNetworkNotConnected())
     }
 
     private val charactersListObserver = Observer<CharactersListDataContainer> {
