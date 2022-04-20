@@ -4,6 +4,5 @@ enum class BaseStatus {
     LOADING,
     SUCCESS,
     FAILED,
-    ERROR_UNKNOWN,
     ERROR_CONNECTION
 }

@@ -11,12 +11,17 @@
         android:label="fragment_characters_list"
         tools:layout="@layout/fragment_characters_list" >
         <action
-            android:id="@+id/action_charactersListFragment_to_charactersDetailFragment"
+            android:id="@+id/to_charactersDetailFragment"
             app:destination="@id/charactersDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/charactersDetailFragment"
-        android:name="com.manimal.marvelcharacters.features.characters.detail.CharactersDetailFragment"
+        android:name="com.manimal.marvelcharacters.features.characters.detail.CharacterDetailFragment"
         android:label="fragment_characters_detail"
-        tools:layout="@layout/fragment_characters_detail" />
+        tools:layout="@layout/fragment_character_detail" >
+        <argument
+            android:name="character_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

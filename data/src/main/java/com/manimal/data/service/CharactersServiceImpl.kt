@@ -17,4 +17,18 @@ class CharactersServiceImpl : CharactersService {
             ServiceResult.BackendError()
         }
     }
+
+    override suspend fun getCharacterDetail(
+        characterId: Int,
+        timeStamp: String,
+        publicKey: String,
+        hash: String
+    ): ServiceResult<CharactersListResponseModel> {
+        val serviceApi = NetworkModule.getRetrofit().create(CharactersApi::class.java)
+        return try {
+            ServiceResult.Success(serviceApi.getCharacterDetail(characterId, timeStamp, publicKey, hash))
+        } catch (e: Exception) {
+            ServiceResult.BackendError()
+        }
+    }
 }

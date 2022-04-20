@@ -14,6 +14,7 @@ class CharactersViewModel(
 ) : ViewModel() {
 
     val charactersListLiveData: MutableLiveData<CharactersListDataContainer> = MutableLiveData()
+    val characterDetailLiveData: MutableLiveData<CharactersListDataContainer> = MutableLiveData()
 
     fun getCharactersList(networkNotConnected: Boolean) {
         charactersListLiveData.value = CharactersListDataContainer(BaseStatus.LOADING)
@@ -27,6 +28,22 @@ class CharactersViewModel(
             when (val response = charactersUseCase.getCharactersList()) {
                 is UseCaseResult.Success -> charactersListLiveData.value = CharactersListDataContainer(BaseStatus.SUCCESS, response.data)
                 is UseCaseResult.Failure -> charactersListLiveData.value = CharactersListDataContainer(BaseStatus.FAILED)
+            }
+        }
+    }
+
+    fun getCharacterDetail(networkNotConnected: Boolean, characterId: Int) {
+        characterDetailLiveData.value = CharactersListDataContainer(BaseStatus.LOADING)
+
+        if (networkNotConnected) {
+            characterDetailLiveData.value = CharactersListDataContainer(BaseStatus.ERROR_CONNECTION)
+            return
+        }
+
+        viewModelScope.launch {
+            when (val response = charactersUseCase.getCharacterDetail(characterId)) {
+                is UseCaseResult.Success -> characterDetailLiveData.value = CharactersListDataContainer(BaseStatus.SUCCESS, response.data)
+                is UseCaseResult.Failure -> characterDetailLiveData.value = CharactersListDataContainer(BaseStatus.FAILED)
             }
         }
     }

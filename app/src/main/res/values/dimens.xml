@@ -2,8 +2,8 @@
 <resources>
 
     <!--region Characters list-->
-    <dimen name="characters_list_text_mh">12dp</dimen>
-    <dimen name="characters_list_name_ts">16sp</dimen>
-    <dimen name="characters_list_description_ts">12sp</dimen>
+    <dimen name="character_text_mh">12dp</dimen>
+    <dimen name="character_name_ts">16sp</dimen>
+    <dimen name="character_description_ts">12sp</dimen>
     <!--endregion-->
 </resources>

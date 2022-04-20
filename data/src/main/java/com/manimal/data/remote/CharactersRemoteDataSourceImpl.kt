@@ -23,4 +23,22 @@ class CharactersRemoteDataSourceImpl(
             }
         }
     }
+
+    override suspend fun getCharacterDetail(
+        characterId: Int,
+        timeStamp: String,
+        publicKey: String,
+        hash: String
+    ): UseCaseResult<CharactersListData> {
+        return when (val charactersResponse = charactersService.getCharacterDetail(characterId, timeStamp, publicKey, hash)) {
+            is ServiceResult.Success<*> -> {
+                UseCaseResult.Success(
+                    (charactersResponse.data as CharactersListResponseModel).mapToCharactersListData()
+                )
+            }
+            is ServiceResult.BackendError -> {
+                UseCaseResult.Failure()
+            }
+        }
+    }
 }

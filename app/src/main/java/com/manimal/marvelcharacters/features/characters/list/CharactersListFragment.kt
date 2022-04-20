@@ -3,6 +3,7 @@ package com.manimal.marvelcharacters.features.characters.list
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.manimal.marvelcharacters.databinding.FragmentCharactersListBinding
 import com.manimal.marvelcharacters.features.base.BaseFragment
@@ -40,8 +41,12 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
                 if (results?.isNotEmpty() == true) {
                     val charactersListAdapter = CharactersListAdapter(
                         charactersList = results,
-                        action = {
-
+                        action = { nullableId ->
+                            nullableId?.let { id ->
+                                findNavController().navigate(
+                                    CharactersListFragmentDirections.toCharactersDetailFragment(id)
+                                )
+                            }
                         }
                     )
 
@@ -54,7 +59,7 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
             BaseStatus.ERROR_CONNECTION -> {
                 binding.pbCharactersListLoading.setGone()
             }
-            BaseStatus.ERROR_UNKNOWN -> {
+            BaseStatus.FAILED -> {
                 binding.pbCharactersListLoading.setGone()
             }
         }

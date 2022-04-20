@@ -12,4 +12,13 @@ class CharactersRepositoryImpl(
     override suspend fun getCharactersLis(timeStamp: String, publicKey: String, hash: String): UseCaseResult<CharactersListData> {
         return charactersRemoteDataSource.getCharactersList(timeStamp, publicKey, hash)
     }
+
+    override suspend fun getCharacterDetail(
+        characterId: Int,
+        timeStamp: String,
+        publicKey: String,
+        hash: String
+    ): UseCaseResult<CharactersListData> {
+        return charactersRemoteDataSource.getCharacterDetail(characterId, timeStamp, publicKey, hash)
+    }
 }

@@ -19,6 +19,16 @@ class CharactersUseCase(
             hash = md5(timeStamp + privateKey + publicKey)
         )
     }
+    suspend fun getCharacterDetail(characterId: Int): UseCaseResult<CharactersListData> {
+        val timeStamp = Calendar.getInstance().timeInMillis.toString()
+
+        return charactersRepository.getCharacterDetail(
+            characterId = characterId,
+            timeStamp = timeStamp,
+            publicKey = publicKey,
+            hash = md5(timeStamp + privateKey + publicKey)
+        )
+    }
 
     private fun md5(input:String): String {
         val md = MessageDigest.getInstance("MD5")
