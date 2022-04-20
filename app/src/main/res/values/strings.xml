@@ -4,4 +4,14 @@
     <!--region Character detail-->
     <string name="character_detail_fragment_last_modification">Last modification:</string>
     <!--endregion-->
+
+    <!--region Errors-->
+    <string name="generic_error_internet_title">Internet connection error</string>
+    <string name="generic_error_internet_message">Please check your internet connection</string>
+    <string name="generic_error_unknown_title">Something went wrong</string>
+    <string name="generic_error_unknown_message">Please try again later</string>
+    <string name="generic_error_button_ok">OK</string>
+    <string name="generic_error_button_exit">Exit</string>
+    <string name="generic_error_button_retry">Retry</string>
+    <!--endregion-->
 </resources>
