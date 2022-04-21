@@ -35,7 +35,7 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
     //region Observers
     private fun initObservers() {
         viewModel.characterDetailLiveData.observe(viewLifecycleOwner, characterDetailObserver)
-        viewModel.getCharacterDetail(isNetworkNotConnected(), args.characterId)
+        viewModel.getCharacterDetail(args.characterId)
     }
 
     private val characterDetailObserver = Observer<CharactersListDataContainer> {
@@ -82,7 +82,7 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
                             requireActivity().finish()
                         },
                         negativeAction = {
-                            viewModel.getCharactersList(isNetworkNotConnected())
+                            viewModel.getCharacterDetail(args.characterId)
                         }
                     )
                 )

@@ -32,7 +32,7 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
     private fun initObservers() {
         viewModel.apply {
             charactersListLiveData.observe(viewLifecycleOwner, charactersListObserver)
-            getCharactersList(isNetworkNotConnected())
+            getCharactersList()
         }
     }
 
@@ -74,7 +74,7 @@ class CharactersListFragment : BaseFragment<FragmentCharactersListBinding, Chara
                             requireActivity().finish()
                         },
                         negativeAction = {
-                            viewModel.getCharactersList(isNetworkNotConnected())
+                            viewModel.getCharactersList()
                         }
                     )
                 )

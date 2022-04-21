@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/character_text_mh"
         android:ellipsize="end"
-        android:maxLines="@dimen/character_description_max_lines"
+        android:maxLines="2"
         android:textSize="@dimen/character_description_ts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

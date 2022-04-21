@@ -6,4 +6,6 @@ object Constants {
 
     const val SLASH = "/"
     const val DOT = "."
+
+    const val UNABLE_TO_RESOLVE_HOST = "Unable to resolve host"
 }

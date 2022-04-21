@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.manimal.marvelcharacters.utils.NetworkUtils
 import java.lang.ref.WeakReference
 
 abstract class BaseFragment<B : ViewBinding, A : BaseActivity<*>> : Fragment() {
@@ -27,10 +26,6 @@ abstract class BaseFragment<B : ViewBinding, A : BaseActivity<*>> : Fragment() {
     ): View? {
         binding = getBindingClass()
         return binding.root
-    }
-
-    open fun isNetworkNotConnected(): Boolean {
-        return NetworkUtils.isNetworkNotConnected(requireContext())
     }
 
     abstract fun getBindingClass(): B
