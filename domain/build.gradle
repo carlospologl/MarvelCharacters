@@ -14,6 +14,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "PUBLIC_KEY", "\"871d315025aa0bf2b22f6ff52312bd39\"")
+        buildConfigField("String", "PRIVATE_KEY", "\"8b8dbd67d1f06ea68b668dd53b153d677a38a46b\"")
     }
 
     buildTypes {
