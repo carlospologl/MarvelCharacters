@@ -9,7 +9,7 @@ class CharactersRepositoryImpl(
     private val charactersRemoteDataSource: CharactersRemoteDataSource
 ) : CharactersRepository {
 
-    override suspend fun getCharactersLis(timeStamp: String, publicKey: String, hash: String): UseCaseResult<CharactersListData> {
+    override suspend fun getCharactersList(timeStamp: String, publicKey: String, hash: String): UseCaseResult<CharactersListData> {
         return charactersRemoteDataSource.getCharactersList(timeStamp, publicKey, hash)
     }
 
