@@ -20,6 +20,8 @@ private fun getCharactersList(results: List<CharactersListResultsModel>?): List<
     results?.let {
         val list: MutableList<CharacterData> = mutableListOf()
         it.forEach { item ->
+            val comics = item.comics?.items?.map { comic -> comic.name ?: ""  }
+
             list.add(
                 CharacterData(
                     id = item.id,
@@ -32,7 +34,8 @@ private fun getCharactersList(results: List<CharactersListResultsModel>?): List<
                         SLASH +
                         IMAGE_VARIANT_PORTRAIT_MEDIUM +
                         DOT +
-                        item.thumbnail?.extension
+                        item.thumbnail?.extension,
+                    comics = comics
                 )
             )
         }

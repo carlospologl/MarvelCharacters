@@ -56,4 +56,25 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_character_detail_image"
         tools:text="2013-10-17 14:41" />
 
+    <TextView
+        android:id="@+id/tv_character_detail_comics_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/character_text_mh"
+        android:text="@string/character_detail_fragment_comics_title"
+        android:textSize="@dimen/character_description_ts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_character_detail_last_modified" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_character_detail_comics"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_character_detail_comics_title"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_character_detail_comics"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

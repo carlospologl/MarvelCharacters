@@ -11,7 +11,8 @@ interface CharactersApi {
     suspend fun getCharactersList(
         @Query("ts") timeStamp: String,
         @Query("apikey") publicKey: String,
-        @Query("hash") hash: String
+        @Query("hash") hash: String,
+        @Query("limit") limit: String? = "50"
     ): CharactersListResponseModel
 
     @GET("v1/public/characters/{characterId}")

@@ -3,6 +3,8 @@
 
     <!--region Character detail-->
     <string name="character_detail_fragment_last_modification">Last modification:</string>
+    <string name="character_detail_fragment_comics_title">\nComics:\n</string>
+    <string name="character_detail_fragment_comics_empty">\nNo comics related\n</string>
     <!--endregion-->
 
     <!--region Errors-->

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.manimal.marvelcharacters.R
 import com.manimal.marvelcharacters.databinding.FragmentCharacterDetailBinding
@@ -27,6 +28,7 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.rvCharacterDetailComics.layoutManager = LinearLayoutManager(requireContext())
         initObservers()
     }
 
@@ -56,10 +58,15 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
                         )
                     }
 
-
                     Glide.with(binding.root.context)
                         .load(characterData.thumbnail)
                         .into(binding.ivCharacterDetailImage)
+
+                    if (!characterData.comics.isNullOrEmpty()) {
+                        binding.rvCharacterDetailComics.adapter = ComicsAdapter(characterData.comics ?: mutableListOf())
+                    } else {
+                        binding.tvCharacterDetailComicsTitle.text = getString(R.string.character_detail_fragment_comics_empty)
+                    }
                 }
             }
             BaseStatus.ERROR_CONNECTION -> {
@@ -106,6 +113,10 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
             tvCharacterDetailName.loadSkeleton(length = 16)
             tvCharacterDetailDescription.loadSkeleton(length = 200)
             tvCharacterDetailLastModifiedValue.loadSkeleton(length = 12)
+            tvCharacterDetailComicsTitle.loadSkeleton(length = 16)
+            rvCharacterDetailComics.loadSkeleton(R.layout.item_character_detail_comics) {
+                itemCount(6)
+            }
         }
     }
 
@@ -115,6 +126,8 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Cha
             tvCharacterDetailName.hideSkeleton()
             tvCharacterDetailDescription.hideSkeleton()
             tvCharacterDetailLastModifiedValue.hideSkeleton()
+            tvCharacterDetailComicsTitle.hideSkeleton()
+            rvCharacterDetailComics.hideSkeleton()
         }
     }
     //endregion

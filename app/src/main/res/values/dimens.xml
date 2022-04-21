@@ -5,5 +5,7 @@
     <dimen name="character_text_mh">12dp</dimen>
     <dimen name="character_name_ts">16sp</dimen>
     <dimen name="character_description_ts">12sp</dimen>
+    <dimen name="character_comics_item_ts">14sp</dimen>
+    <dimen name="character_comics_item_p">8dp</dimen>
     <!--endregion-->
 </resources>

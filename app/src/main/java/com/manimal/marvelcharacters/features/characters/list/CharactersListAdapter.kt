@@ -10,21 +10,21 @@ import com.manimal.marvelcharacters.databinding.ItemCharactersListBinding
 class CharactersListAdapter(
     private val charactersList: List<CharacterData>,
     private val action: (id: Int?) -> Unit
-) : RecyclerView.Adapter<CharactersListAdapter.CharactersListVIewHolder>() {
+) : RecyclerView.Adapter<CharactersListAdapter.CharactersListViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersListVIewHolder {
-        return CharactersListVIewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersListViewHolder {
+        return CharactersListViewHolder(
             ItemCharactersListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: CharactersListVIewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CharactersListViewHolder, position: Int) {
         holder.bind(charactersList[position])
     }
 
     override fun getItemCount() = charactersList.size
 
-    inner class CharactersListVIewHolder(
+    inner class CharactersListViewHolder(
         private val binding: ItemCharactersListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 

@@ -8,5 +8,6 @@ data class CharactersListResultsModel(
     @SerializedName("description") val description : String?,
     @SerializedName("modified") val modified : String?,
     @SerializedName("resourceURI") val resourceURI : String?,
-    @SerializedName("thumbnail") val thumbnail : CharactersListThumbnailModel?
+    @SerializedName("thumbnail") val thumbnail : CharactersListThumbnailModel?,
+    @SerializedName("comics") val comics : CharactersListComicsModel?
 )
