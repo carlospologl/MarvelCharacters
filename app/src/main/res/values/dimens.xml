@@ -2,10 +2,26 @@
 <resources>
 
     <!--region Characters list-->
+    <dimen name="character_list_item_p">16dp</dimen>
+    <dimen name="character_image_width">60dp</dimen>
+    <dimen name="character_image_height">60dp</dimen>
     <dimen name="character_text_mh">12dp</dimen>
     <dimen name="character_name_ts">16sp</dimen>
     <dimen name="character_description_ts">12sp</dimen>
+    <dimen name="character_description_max_lines">2</dimen>
     <dimen name="character_comics_item_ts">14sp</dimen>
     <dimen name="character_comics_item_p">8dp</dimen>
     <!--endregion-->
+
+    <!--region Character detail-->
+    <dimen name="character_detail_image_width">150dp</dimen>
+    <dimen name="character_detail_image_height">225dp</dimen>
+    <!--endregion-->
+
+    <!--region General values-->
+    <dimen name="bias_zero">0.0</dimen>
+    <dimen name="bias_one">1.0</dimen>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="separator_height">1dp</dimen>
+    <!---->
 </resources>
